@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: fatocwb/astrodecap1
+  name: git-gateway
   branch: main
   
 
