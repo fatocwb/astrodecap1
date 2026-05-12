@@ -11,11 +11,23 @@
 		<title>Decap CMS Dashboard</title>
 	</head>
 	<body>
-		<!-- Netlify Identity widget -->
-		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+			<!-- Decap CMS -->
+	<script is:inline src="https://unpkg.com/decap-cms@^3.10.0/dist/decap-cms.js"></script>
 
-		<!-- Decap CMS script -->
-		<script is:inline src="https://unpkg.com/decap-cms@^3.10.0/dist/decap-cms.js"></script>
+	<!-- Netlify Identity -->
+	<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+	<script is:inline>
+		if (window.netlifyIdentity) {
+			window.netlifyIdentity.on("init", (user) => {
+				if (!user) {
+					window.netlifyIdentity.on("login", () => {
+						document.location.href = "/admin/";
+					});
+				}
+			});
+		}
+	</script>
 
 		<!-- Decap CMS preview pane script -->
 		<!-- Edit this script to customize the preview pane for your blog posts.  -->
