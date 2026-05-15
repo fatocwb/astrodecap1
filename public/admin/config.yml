@@ -3,24 +3,26 @@ backend:
   branch: main
   
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+
+# Add site link in DecapCMS (optional)
+site_url: https://picowebdesign1.netlify.app/  
+
+
+media_folder: src/assets/images/blog # Location where files will be stored in the repo - we store them in src so that Astro can optimize them.
+public_folder: "@assets/images/blog" # Same folder as above, but using a path alias for easier referencing in the markdown files.
 
 
 collections:
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    label: "Blog" # Used in the UI
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog. Is also the key when fetching data from the CMS.
+    label: "Blog" # Used in the admin dashboard UI
     folder: "src/content/blog" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}"
-
-    fields: # The fields for each document, usually in frontmatter
-      - { label: "Título", name: "title", widget: "string" }
-
-      - { label: "Descrição", name: "description", widget: "text" }
-
-      - { label: "Data", name: "date", widget: "datetime" }
-
-      - { label: "Imagem", name: "image", widget: "image" }
-
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
+    fields: # The fields for each document
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Image Caption", name: "imageAlt", widget: "string" }
+      - { label: "Is it a featured post?", name: "isFeatured", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
